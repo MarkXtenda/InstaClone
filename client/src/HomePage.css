@@ -1,0 +1,16 @@
+.home-page {
+    text-align: center;
+  }
+  
+  ul {
+    list-style-type: none;  
+  }
+
+.home-page > #user-section {
+    display: flex;
+    flex-flow: wrap;
+    padding: 10px;
+    flex-direction: row;
+    justify-content: space-around;
+    list-style-type: none
+}
