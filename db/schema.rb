@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_20_043142) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_22_034327) do
   create_table "posts", force: :cascade do |t|
     t.integer "user_id"
     t.string "image"
@@ -25,10 +25,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_20_043142) do
     t.string "username"
     t.string "avatar"
     t.string "bio"
-    t.integer "author_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["author_id"], name: "index_users_on_author_id"
+    t.string "password_digest"
   end
 
 end

@@ -4,11 +4,13 @@ import HomePage from './HomePage'
 import Feed from './Feed'
 import Login from "./Login";
 import Post from "./Post";
+import Signup from './Signup';
+
 
 function App() {
   return (
     <div className="App">
-      <Post></Post>
+      <Signup></Signup>
     </div>
   );
 }

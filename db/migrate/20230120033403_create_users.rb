@@ -4,7 +4,6 @@ class CreateUsers < ActiveRecord::Migration[7.0]
       t.string "username"
       t.string "avatar"
       t.string "bio"
-      t.belongs_to :author
       t.timestamps
     end
   end
