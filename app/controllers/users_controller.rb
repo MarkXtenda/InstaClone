@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    skip_before_action :verify_authenticity_token   #{Testing login response}
+    # skip_before_action :verify_authenticity_token   #{Testing login response}
     def index
         users = User.all
         render json: users
@@ -8,12 +8,13 @@ class UsersController < ApplicationController
         user = User.find(params[:id])
         render json: user
     end
-    def create
+    def create  #{ Signup method}
         user = User.create(user_params)
         if user.valid?
-          render json: user, status: :created
+            session[:user_id] = user.id\
+            render json: user, status: :created
         else
-          render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
+            render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
         end
     end
     
