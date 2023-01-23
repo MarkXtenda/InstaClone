@@ -4,6 +4,7 @@ import { useState } from 'react';
 function Login() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [errors, setErrors] = useState([])
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -17,8 +18,15 @@ function Login() {
             password,
           }),
         })
-          .then((r) => r.json())
-          .then((user)=>console.log(`User named ${user.username} has logged in`));
+        .then((r) => {
+          if(r.ok) {
+            setErrors([])
+            r.json().then((user) => console.log(`User: ${user.username} has been created`))
+          }
+          else {
+            r.json().then((err)=> setErrors(err.errors))
+          }
+        });
       }
 
     return(
@@ -28,7 +36,13 @@ function Login() {
                 <form 
                 onSubmit={handleSubmit}
                 style={{display: "flex", flexDirection: "column", margin: "50px 50px"}}>
-                
+            
+                {/* fetch error handlers for login and signup */}
+                {errors ?
+                <p>{errors}</p> :
+                <p></p>}
+                {/* fetch error handlers for login and signup */}
+
                 <label htmlFor="username">Username:</label>
                 <input
                 type="text"

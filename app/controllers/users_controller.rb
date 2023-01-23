@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
     # skip_before_action :verify_authenticity_token   #{Testing login response}
+    rescue_from ActiveRecord::RecordInvalid, with: :invalid_response
     def index
         users = User.all
         render json: users
@@ -13,8 +14,8 @@ class UsersController < ApplicationController
         if user.valid?
             session[:user_id] = user.id
             render json: user, status: :created
-        else
-            render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
+        # else
+        #     render json: { "errors": user.errors.full_messages }, status: :unprocessable_entity
         end
     end
     
@@ -22,5 +23,9 @@ class UsersController < ApplicationController
 
     def user_params
         params.permit(:username, :password, :password_confirmation, :user)
+    end
+
+    def invalid_response(user)
+        render json: { errors: user.record.errors.full_messages }, status: :unprocessable_entity
     end
 end

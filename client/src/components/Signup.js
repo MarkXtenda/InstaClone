@@ -5,7 +5,8 @@ function Signup() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [passwordConfirmation, setPasswordConfirmation] = useState("");
-
+    const [errors, setErrors] = useState([])
+    
     function handleSubmit(e) {
         e.preventDefault();
         fetch("/signup", {
@@ -19,8 +20,14 @@ function Signup() {
             password_confirmation: passwordConfirmation,
           }),
         })
-          .then((r) => r.json())
-          .then((user)=>console.log(`User: ${user.username} has been created`));
+          .then((r) => {
+            if(r.ok) {
+              r.json().then((user) => console.log(`User: ${user.username} has been created`))
+            }
+            else {
+              r.json().then((err)=> setErrors(err.errors))
+            }
+          });
       }
 
     return(
@@ -30,7 +37,13 @@ function Signup() {
                 <form 
                 onSubmit={handleSubmit}
                 style={{display: "flex", flexDirection: "column", margin: "50px 50px"}}>
-                
+
+                {/* fetch error handlers for login and signup */}
+                {errors.length > 0 ?
+                errors.map((error, index)=><p key={index}>{error}</p>) :
+                <p></p>}
+                {/* fetch error handlers for login and signup */}
+
                 <label htmlFor="username">Username:</label>
                 <input
                 type="text"
