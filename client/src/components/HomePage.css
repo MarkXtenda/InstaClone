@@ -6,9 +6,8 @@
     list-style-type: none;  
   }
 
-.home-page > #user-section {
+.user-section {
     display: flex;
-    flex-flow: wrap;
     padding: 10px;
     flex-direction: row;
     justify-content: space-around;

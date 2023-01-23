@@ -5,13 +5,16 @@ import Feed from './Feed'
 import Login from "./Login";
 import Post from "./Post";
 import Signup from './Signup';
-import { Switch, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 
 function App() {
   return (
     <div className="App">
-      <Signup></Signup>
+      <Routes>
+        <Route path="/" element={<HomePage />}></Route>
+        <Route path="/feed" element={<Feed />}></Route>
+      </Routes>
     </div>
   );
 }

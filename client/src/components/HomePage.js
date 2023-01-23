@@ -15,7 +15,7 @@ function HomePage() {
                 <button>login</button>
                 <button>signup</button>
             </header>
-            <section id="user-section">
+            <section className="user-section">
             <div>
                 image
                 <img src={logo} style={{height: "100px", width: "100px"}} alt=""></img>
@@ -28,7 +28,7 @@ function HomePage() {
                     </ul>
                 </div>
             </section>
-            <section class="post-section">
+            <section className="post-section">
                 {posts.map((post) => <img key={post} src={logo} style={{height: "200px", width: "200px"}} alt=""></img>)}
             </section>
         </div>
