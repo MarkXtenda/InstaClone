@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import { useState } from 'react';
 
-function Login() {
+function Login({onLogin}) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState([])
@@ -21,7 +21,9 @@ function Login() {
         .then((r) => {
           if(r.ok) {
             setErrors([])
-            r.json().then((user) => console.log(`User: ${user.username} has been created`))
+            r.json().then((user) => {
+              onLogin(user)
+              console.log(`User: ${user.username} has been logged in`)})
           }
           else {
             r.json().then((err)=> setErrors(err.errors))
