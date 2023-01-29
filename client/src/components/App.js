@@ -7,11 +7,12 @@ import Post from "./Post";
 import Signup from './Signup';
 import { Routes, Route } from "react-router-dom";
 import { useState, useEffect } from 'react';
+import NavBar from './NavBar';
 
 
 function App() {
 
-  const [loged, setLoged] = useState(false) /* log in method */
+  const [user, setUser] = useState(false) /* log in method */
 
   useEffect(() => {
     // auto-login
@@ -19,23 +20,22 @@ function App() {
       if (r.ok) {
         r.json().then((user) => {
           console.log(user)
-          setLoged(user)});
+          setUser(user)});
       }
     });
   }, []);
   
-  if (!loged) return <Login onLogin={setLoged} />;
+  if (!user) return <Login onLogin={setUser} />;
 
   return (
     <div className="App">
-      <main>
-      <Feed user={loged} onLogin={setLoged}/>
-      </main>
+      <NavBar user={user} onLogin={setUser} ></NavBar>
       <Routes>
-        <Route path="/" element={<HomePage onLogin={setLoged}/>}></Route>
-        <Route path="/feed" element={<Feed />}></Route>
+        <Route path="/feed" element={<Feed user={user}/>}></Route>
+        <Route path="/" element={<HomePage user={user} onLogin={setUser}/>}></Route>
         <Route path="/signup" element={<Signup />}></Route>
         <Route path="/login" element={<Login />}></Route>
+        <Route  path="/posts" element={<Post />}></Route>
       </Routes>
     </div>
   );

@@ -61,6 +61,7 @@ function Login({onLogin}) {
                 onChange={(e) => setPassword(e.target.value)}>
                 </input>
                     <button type='submit'>login</button>
+                    <button>Don't have an account?</button>
                 </form>
             </header>
         </div>
