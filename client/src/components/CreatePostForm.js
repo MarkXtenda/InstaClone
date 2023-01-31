@@ -27,8 +27,8 @@ function CreatePostForm({user}) {
           if(r.ok) {
             setErrors([])
             r.json().then((user) => {
-              console.log(`Post image: ${user.posts.last.image}`)
-              console.log(`Post caption: ${user.posts.last.caption}`)
+              // console.log(`Post image: ${user.posts.last.image}`)
+              // console.log(`Post caption: ${user.posts.last.caption}`)
               refreshPage()
             })
           }

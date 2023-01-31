@@ -13,7 +13,11 @@ import NavBar from './NavBar';
 function App() {
 
   const [user, setUser] = useState(false) /* log in method */
+  const [path, setPath] = useState(0)
 
+  // function handlePostPath(path) {
+  //   setPath(path)
+  // }
   useEffect(() => {
     // auto-login
     fetch("/me").then((r) => {
@@ -35,7 +39,7 @@ function App() {
         <Route path="/" element={<HomePage user={user} onLogin={setUser}/>}></Route>
         <Route path="/signup" element={<Signup />}></Route>
         <Route path="/login" element={<Login />}></Route>
-        <Route  path="/posts" element={<Post />}></Route>
+        <Route  path="/posts/:id" element={<Post />}></Route>
       </Routes>
     </div>
   );

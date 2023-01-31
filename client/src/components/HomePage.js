@@ -3,17 +3,12 @@ import logo from './logo.svg';
 import { useState } from 'react';
 import CreatePostForm from './CreatePostForm';
 import UpdateProfile from './UpdateProfile';
+import { Link } from 'react-router-dom';
+import Post from './Post';
 
 function HomePage({user}) {
     const [togle, setToggle] = useState("Home")
-    const [createPost, setCreatePost] = useState("CreatePost")
-    const [updateProfile, setUpdateProfile] = useState("UpdateProfile")
-
-    const posts = []
-    for (let i = 0; i < 6; i++) {
-        posts.push(i)
-
-    }
+    const [chosenPost, setChosenPost] = useState(0)
 
     return(
         <div className = "home-page">
@@ -36,9 +31,8 @@ function HomePage({user}) {
             </section>
             <section className="post-section">
                 {
-                ({
-                    
-                    Home: <div>{ user.posts.length > 0 && user.posts.map((post)=> <img key={post.id} src={post.image} style={{height: "200px", width: "200px"}} alt=""></img>)}</div>,
+                ({ 
+                    Home: <div>{ user.posts.length > 0 && user.posts.map(({id,image})=> <Link to={"/posts/"+id} onClick={()=>setChosenPost(id)} key={id} id={id}><img src={image} alt='' style={{height: "200px", width: "200px"}}></img></Link>)}</div>,
                     UpdateProfile: <UpdateProfile user={user}></UpdateProfile>,
                     CreatePost: <CreatePostForm user={user}></CreatePostForm>
                 })[togle]

@@ -11,7 +11,7 @@ function NavBar({user, onLogin}) {
   
     return (
     <header className="user-section"> 
-        <a href="/"><img src={logo} style={{height: "50px", width: "50px"}} alt=""></img></a>
+        <a href="/feed"><img src={logo} style={{height: "50px", width: "50px"}} alt=""></img></a>
         <input></input>
         <a href="/"><h3>@{user.username}</h3></a>
         <button onClick={handleLogout}>logout</button> 
