@@ -1,10 +1,9 @@
-import logo from './logo.svg';
-import { useParams, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router'
+
 function Post() {
 
   const [post, setPost] = useState([]);
-  // const id = useParams().id;
   const location = useLocation()
   const path = location.pathname.split('/')[2]
   // need some work on fetch api

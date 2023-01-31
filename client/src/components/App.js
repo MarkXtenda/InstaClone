@@ -8,12 +8,14 @@ import Signup from './Signup';
 import { Routes, Route } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import NavBar from './NavBar';
-
+import SearchUser from './SearchUser'
+import UserPage from './UserPage'
 
 function App() {
 
   const [user, setUser] = useState(false) /* log in method */
-  const [path, setPath] = useState(0)
+  // const [path, setPath] = useState(0)
+  const [search, setSearch] = useState([])
 
   // function handlePostPath(path) {
   //   setPath(path)
@@ -23,7 +25,6 @@ function App() {
     fetch("/me").then((r) => {
       if (r.ok) {
         r.json().then((user) => {
-          console.log(user)
           setUser(user)});
       }
     });
@@ -33,13 +34,15 @@ function App() {
 
   return (
     <div className="App">
-      <NavBar user={user} onLogin={setUser} ></NavBar>
+      <NavBar user={user} onLogin={setUser} onSearch={setSearch} ></NavBar>
+      {search.length > 0 && <SearchUser users={search} clearSearch={setSearch}></SearchUser>}
       <Routes>
         <Route path="/feed" element={<Feed user={user}/>}></Route>
         <Route path="/" element={<HomePage user={user} onLogin={setUser}/>}></Route>
         <Route path="/signup" element={<Signup />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route  path="/posts/:id" element={<Post />}></Route>
+        <Route  path="/users/:id" element={<UserPage searched = {search} />}></Route>
       </Routes>
     </div>
   );

@@ -4,11 +4,10 @@ import { useState } from 'react';
 import CreatePostForm from './CreatePostForm';
 import UpdateProfile from './UpdateProfile';
 import { Link } from 'react-router-dom';
-import Post from './Post';
 
 function HomePage({user}) {
     const [togle, setToggle] = useState("Home")
-    const [chosenPost, setChosenPost] = useState(0)
+    // const [chosenPost, setChosenPost] = useState(0)
 
     return(
         <div className = "home-page">
@@ -19,7 +18,7 @@ function HomePage({user}) {
                 <div>
                     <ul>
                         <li>{user.username}</li>
-                        <h4>{user.posts.length} posts, followers, following</h4>
+                        <h4>{user.posts ? user.posts.length : 0} posts, {user.followers ? user.followers.length : 0} followers, {user.followings ? user.followings.length : 0} following</h4>
                         <li>{user.bio}</li>
                     </ul>
                 </div>
@@ -32,7 +31,7 @@ function HomePage({user}) {
             <section className="post-section">
                 {
                 ({ 
-                    Home: <div>{ user.posts.length > 0 && user.posts.map(({id,image})=> <Link to={"/posts/"+id} onClick={()=>setChosenPost(id)} key={id} id={id}><img src={image} alt='' style={{height: "200px", width: "200px"}}></img></Link>)}</div>,
+                    Home: <div>{ user.posts && user.posts.map(({id,image})=> <Link to={"/posts/"+id} key={id} id={id}><img src={image} alt='' style={{height: "200px", width: "200px"}}></img></Link>)}</div>,
                     UpdateProfile: <UpdateProfile user={user}></UpdateProfile>,
                     CreatePost: <CreatePostForm user={user}></CreatePostForm>
                 })[togle]
