@@ -14,12 +14,9 @@ import UserPage from './UserPage'
 function App() {
 
   const [user, setUser] = useState(false) /* log in method */
-  // const [path, setPath] = useState(0)
   const [search, setSearch] = useState([])
+  const [signup, setSignup] = useState(false)
 
-  // function handlePostPath(path) {
-  //   setPath(path)
-  // }
   useEffect(() => {
     // auto-login
     fetch("/me").then((r) => {
@@ -30,7 +27,8 @@ function App() {
     });
   }, []);
   
-  if (!user) return <Login onLogin={setUser} />;
+  // if (!user) return(signup ? (<Signup onSignup={setSignup}/>) : (<Login onLogin={setUser} onSignup={setSignup}/>));
+  if (!user) return(<Login onLogin={setUser} />);
 
   return (
     <div className="App">
@@ -42,7 +40,7 @@ function App() {
         <Route path="/signup" element={<Signup />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route  path="/posts/:id" element={<Post />}></Route>
-        <Route  path="/users/:id" element={<UserPage searched = {search} />}></Route>
+        <Route  path="/users/:id" element={<UserPage userId={user.id} searched = {search} />}></Route>
       </Routes>
     </div>
   );

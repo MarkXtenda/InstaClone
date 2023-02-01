@@ -1,7 +1,8 @@
 import logo from './logo.svg';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
-function Login({onLogin}) {
+function Login({onLogin, onSignup}) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState([])
@@ -23,7 +24,7 @@ function Login({onLogin}) {
             setErrors([])
             r.json().then((user) => {
               onLogin(user)
-              console.log(`User: ${user.username} has been logged in`)})
+              console.log(`User: ${user.username} with id: ${user.id} has been logged in`)})
           }
           else {
             r.json().then((err)=> setErrors(err.errors))
@@ -61,7 +62,7 @@ function Login({onLogin}) {
                 onChange={(e) => setPassword(e.target.value)}>
                 </input>
                     <button type='submit'>login</button>
-                    <button>Don't have an account?</button>
+                    <button onClick={()=>onSignup(true)}><Link to="/signup">Don't have an account?</Link></button>
                 </form>
             </header>
         </div>

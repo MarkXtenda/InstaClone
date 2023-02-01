@@ -1,7 +1,8 @@
 import logo from './logo.svg';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
-function Signup() {
+function Signup({onSignup}) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [passwordConfirmation, setPasswordConfirmation] = useState("");
@@ -22,7 +23,10 @@ function Signup() {
         })
           .then((r) => {
             if(r.ok) {
-              r.json().then((user) => console.log(`User: ${user.username} has been created`))
+              r.json().then((user) => {
+                onSignup(false)
+                console.log(`User: ${user.username} has been created`)})
+
             }
             else {
               r.json().then((err)=> setErrors(err.errors))
@@ -67,7 +71,8 @@ function Signup() {
                 value={passwordConfirmation}
                 onChange={(e) => setPasswordConfirmation(e.target.value)}>
                 </input>
-                    <button type='submit'>login</button>
+                    <button type='submit'>Signup</button>
+                    <button onClick={()=>onSignup(false)}><Link to="/login">I have an account!</Link></button>
                 </form>
             </header>
         </div>

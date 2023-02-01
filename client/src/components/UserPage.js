@@ -1,20 +1,52 @@
 import logo from './logo.svg'
 import { useState, useEffect } from 'react';
-import { useLocation } from 'react-router'
+import { useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
 
-function UserPage({searched}) {
+function UserPage({userId, searched}) {
 
   const [user, setUser] = useState([]);
   const location = useLocation()
   const path = location.pathname.split('/')[2]
 
+  const [follow, setFollow] = useState(false)
+  const follower_id = userId
+  const followed_user_id  = path
+  
   useEffect(()=>{
       fetch(`/users/${path}`).then((r) => {
         if (r.ok) r.json().then((res) => {
           console.log(res)
           setUser(res)});
       })},[searched])
+
+  useEffect(()=>{
+    if (follow) {
+      fetch(`/follow`,{
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          follower_id,
+          followed_user_id,
+        }),
+      })
+      .then((r) => {
+        if (r.ok) r.json().then((res) => {
+          console.log(res)
+          // setUser(res)
+        });
+        })
+    } 
+    else {
+      fetch(`/follow/${path}`, { method: "DELETE" }).then((r) => {
+        if (r.ok) {
+          // onLogin(null);
+        }
+      });
+    }
+  },[follow])
 
   if(user) {
     return (
@@ -25,7 +57,7 @@ function UserPage({searched}) {
             </div>    
                 <div>
                     <ul>
-                        <li>{user.username}</li>
+                        <li>{user.username} <button onClick={()=>setFollow(!follow)}>follow</button></li>
                         <h4>{user.posts ? user.posts.length : 0} posts, {user.followers ? user.followers.length : 0} followers, {user.followings ? user.followings.length : 0} following</h4>
                         <li>{user.bio}</li>
                     </ul>

@@ -34,7 +34,7 @@ function NavBar({user, onLogin, onSearch}) {
             })
           }
           else {
-            r.json().then((err)=> setErrors(err.errors))
+            r.json().then((err)=>setErrors(err))
           }
         });
       }

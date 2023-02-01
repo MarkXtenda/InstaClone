@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
     rescue_from ActiveRecord::RecordInvalid, with: :invalid_response
-    def index
+    # def index
         # if params[:username].length > 0
         #     users = User.where(username: params[:username])
         #     if users.length > 0
@@ -12,6 +12,11 @@ class UsersController < ApplicationController
         #     users = User.all
         #     render json: users
         # end
+    # end
+
+    def index 
+        users = User.all
+        render json: users
     end
 
     def show
@@ -44,7 +49,7 @@ class UsersController < ApplicationController
     private
 
     def user_params
-        params.permit(:username, :password, :password_confirmation, :user)
+        params.permit(:id, :username, :password, :password_confirmation, :user)
     end
 
     def update_params
