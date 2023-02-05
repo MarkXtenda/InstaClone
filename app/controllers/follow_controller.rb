@@ -1,7 +1,7 @@
 class FollowController < ApplicationController
     
     def show    #{ Feed method}
-        user = User.find(params[:id])
+        user = User.find(params[:id]) #{ NOTE: add session[:user_id], instead of params[:id]}
         follows = user.followings
         followed_users = []
         follows.each{|index| followed_users.push(index.id)}
@@ -10,14 +10,15 @@ class FollowController < ApplicationController
     end
     
     def create  #{ Following method }
-        user = User.find_by(id: follow_params[:follower_id])
-        is_following_exist = Follow.where(follow_params).any?
+        user = User.find(params[:follower_id])
+        is_following_exist = Follow.where(follower_id: params[:follower_id], followed_user_id: params[:followed_user_id]).any?
 
         if user && !is_following_exist
-            new_following = Follow.create(follow_params)
-            render json: user
+            new_following = Follow.create(follower_id: params[:follower_id], followed_user_id: params[:followed_user_id])
+            head :no_content, status: :created
         else
-            render json: { error: "Not authorized or not allowed to follow twice" }, status: :unauthorized
+            existing_following = Follow.where(follower_id: params[:follower_id], followed_user_id: params[:followed_user_id])[0]
+            render json: existing_following
         end
     end
 
@@ -36,9 +37,12 @@ class FollowController < ApplicationController
     end
 
     def destroy #{ Unfollowing method }
-        followship = Follow.where(follow_params)
+        # followship = Follow.where(follower_id: params[:follower_id], followed_user_id: params[:followed_user_id])[0]
+        followship = Follow.find(params[:id])
         if followship
-            # followship.destroy
+            followship.destroy
+            # user = User.find(followed_user_id)
+            # render json: user.followings
             head :no_content
         else
             render json: { error: "Not authorized or not allowed to unfollow twice" }, status: :unauthorized
@@ -48,6 +52,7 @@ class FollowController < ApplicationController
     private 
 
     def follow_params
-        params.permit(:follower_id, :followed_user_id)
+        params.permit(:follower_id, :followed_user_id, :id)
+        # params.permit(:follower_id, :followed_user_id, :id, follow: [:follower_id, :followed_user_id])
     end
 end

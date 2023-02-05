@@ -45,6 +45,22 @@ class UsersController < ApplicationController
             render json: user, status: :created
         end
     end
+
+    def followers
+        user = User.find(params[:id])
+        if user
+            followers = user.followers
+            render json: followers
+        end
+    end
+
+    def followings
+        user = User.find(params[:id])
+        if user
+            followings = user.followings
+            render json: followings
+        end
+    end
     
     private
 

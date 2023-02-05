@@ -10,6 +10,7 @@ import { useState, useEffect } from 'react';
 import NavBar from './NavBar';
 import SearchUser from './SearchUser'
 import UserPage from './UserPage'
+import FollowersFollowings from './FollowersFollowings';
 
 function App() {
 
@@ -40,7 +41,9 @@ function App() {
         <Route path="/signup" element={<Signup />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route  path="/posts/:id" element={<Post />}></Route>
-        <Route  path="/users/:id" element={<UserPage userId={user.id} searched = {search} />}></Route>
+        <Route  path="/users/:id" element={<UserPage logedInUser={user} userId={user.id} searched = {search} />}></Route>
+        <Route path="/:id/followers" element={<FollowersFollowings userId={user.id} keyword={"followers"} />}></Route>
+        <Route path="/:id/followings" element={<FollowersFollowings userId={user.id} keyword={"followings"}/>}></Route>
       </Routes>
     </div>
   );

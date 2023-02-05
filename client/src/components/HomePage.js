@@ -4,6 +4,7 @@ import { useState } from 'react';
 import CreatePostForm from './CreatePostForm';
 import UpdateProfile from './UpdateProfile';
 import { Link } from 'react-router-dom';
+import FollowersFollowings from './FollowersFollowings';
 
 function HomePage({user}) {
     const [togle, setToggle] = useState("Home")
@@ -18,7 +19,11 @@ function HomePage({user}) {
                 <div>
                     <ul>
                         <li>{user.username}</li>
-                        <h4>{user.posts ? user.posts.length : 0} posts, {user.followers ? user.followers.length : 0} followers, {user.followings ? user.followings.length : 0} following</h4>
+                        <h4>
+                            {user.posts ? user.posts.length : 0} posts, 
+                            <Link to={user.id+"/followers"}>{user.followers ? user.followers.length : 0} followers</Link>, 
+                            <Link to={user.id+"/followings"}>{user.followings ? user.followings.length : 0} following</Link>
+                        </h4>
                         <li>{user.bio}</li>
                     </ul>
                 </div>

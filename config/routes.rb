@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   post '/login', to: 'session#create'
   delete "/logout", to: "session#destroy"
   get '/me', to: 'session#show'
+  get '/users/:id/followers', to: 'users#followers'
+  get '/users/:id/followings', to: 'users#followings'
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

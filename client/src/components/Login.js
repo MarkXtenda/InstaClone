@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Signup from './Signup';
 
 function Login({onLogin, onSignup}) {
     const [username, setUsername] = useState("");
@@ -31,6 +32,10 @@ function Login({onLogin, onSignup}) {
           }
         });
       }
+    function handleSignupClick() {
+      onSignup(true)
+      return(<Signup></Signup>);
+    }
 
     return(
         <div className = "Login">
@@ -62,8 +67,8 @@ function Login({onLogin, onSignup}) {
                 onChange={(e) => setPassword(e.target.value)}>
                 </input>
                     <button type='submit'>login</button>
-                    <button onClick={()=>onSignup(true)}><Link to="/signup">Don't have an account?</Link></button>
                 </form>
+                <button onClick={handleSignupClick}><Link to="/signup">Don't have an account?</Link></button>
             </header>
         </div>
     );
