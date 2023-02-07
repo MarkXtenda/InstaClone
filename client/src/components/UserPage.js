@@ -15,17 +15,38 @@ function UserPage({logedInUser, userId, searched}) {
   const [followed, setFollowed] = useState(null)
   
   useEffect(()=>{
-      fetch(`/users/${path}`).then((r) => {
-        if (r.ok) r.json().then((res) => {
-          // console.log(res)
-          setUser(res)
-          // setFollowed(res.followers.map(({id})=>id).includes(userId))
-        });
-      })},[searched])
+    Promise.all([
+      fetch(`/users/${path}`).then(res => res.json()),
+      fetch(`/follow?followed_user_id=${followed_user_id}&follower_id=${follower_id}`, {method: "GET",}).then(res => res.json())])
+      .then(([userData, followData]) => {
+        setUser(userData)
+        setFollowed(followData)
+      })
 
-      function handleFollow(param) {
-        {console.log("state is: "+param+" the follower_id: ", follower_id," followed_user_id: ",followed_user_id)}
-        if (param) {
+    // fetch(`/users/${path}`).then((r) => {
+    //   if (r.ok) r.json().then((res) => {
+    //     // console.log(res)
+    //     setUser(res)
+    //     // setFollowed(res.followers.map(({id})=>id).includes(userId))
+    //   });
+    // })
+
+    // fetch(`/follow?followed_user_id=${followed_user_id}&follower_id=${follower_id}`, {
+    //   method: "GET",
+    // })
+    // .then((r) => {
+    //   if (r.ok) {
+    //     r.json().then((is_followExist) => {
+    //       setFollowed(is_followExist)
+    //       console.log(is_followExist)
+    //     });
+    //   }
+    // });
+  
+  },[searched, followed])
+
+      function handleFollow() {
+        if (!followed) {
           fetch(`/follow`,{
             method: "POST",
             headers: {
@@ -36,62 +57,26 @@ function UserPage({logedInUser, userId, searched}) {
               followed_user_id,
             }),
           })
-          .then((r) => {
-            if (r.ok) r.json().then((res) => {
-              setFollowed(res.id)
-              console.log(res.id)
-              // setUser(res)
-            });
-            })
+          .then(res => res.json()).then((res) => {
+            setFollowed(true)
+            setFollow(true)
+            console.log(res)
+          }).catch((err)=>{
+            setFollowed(true)
+            setFollow(true)
+            console.log(err)
+          })
         } 
         else {
-          fetch(`/follow/${followed}`, { method: "DELETE"})
+          fetch(`/follow/${followed_user_id}?follower_id=${follower_id}`, { method: "DELETE"})
           .then((r) => {
-            if (r.ok) r.json().then((res) => {
-              // setFollowed(res.followers.map(({id})=>id).includes(userId))
-              console.log(res)
-              // setUser(res)
-            });      
+            if (r.ok) {
+              setFollowed(false)
+              setFollow(false)
+            }
           });
         }
       }
-
-  // useEffect(()=>{
-  //   if (follow) {
-  //     fetch(`/follow`,{
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({
-  //         follower_id,
-  //         followed_user_id,
-  //       }),
-  //     })
-  //     .then((r) => {
-  //       if (r.ok) r.json().then((res) => {
-  //         setFollowed(res.followers.map(({id})=>id).includes(userId))
-  //         console.log(res)
-  //         // setUser(res)
-  //       });
-  //       })
-  //   } 
-  //   else {
-  //     fetch(`/follow/${path}`, { 
-  //       method: "DELETE",
-  //       body: JSON.stringify({
-  //         follower_id,
-  //         followed_user_id
-  //       }),
-  //     }).then((r) => {
-  //       if (r.ok) r.json().then((res) => {
-  //         setFollowed(res.followers.map(({id})=>id).includes(userId))
-  //         console.log(res)
-  //         // setUser(res)
-  //       });      
-  //     });
-  //   }
-  // },[follow])
 
   if(user) {
     return (
@@ -102,9 +87,9 @@ function UserPage({logedInUser, userId, searched}) {
             </div>    
                 <div>
                     <ul>
-                        <li>{user.username} <button onClick={()=>{handleFollow(true)}}>follow</button><button onClick={()=>{handleFollow(false)}}>unfollow</button></li>
-                        <h4>{user.posts ? user.posts.length : 0} posts, {user.followers ? user.followers.length : 0} followers, {user.followings ? user.followings.length : 0} following</h4>
-                        <li>{user.bio}</li>
+                      <li><button onClick={handleFollow}>{!followed ? 'follow' : 'unfollow'}</button></li>
+                      <h4>{user.posts ? user.posts.length : 0} posts, {user.followers ? user.followers.length : 0} followers, {user.followings ? user.followings.length : 0} following</h4>
+                      <li>{user.bio}</li>
                     </ul>
                 </div>
             </section>

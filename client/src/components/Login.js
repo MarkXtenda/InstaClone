@@ -1,14 +1,15 @@
 import logo from './logo.svg';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Signup from './Signup';
 
 function Login({onLogin, onSignup}) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState([])
+    const navigate = useNavigate();
 
-    function handleSubmit(e) {
+    function HandleSubmit(e) {
         e.preventDefault();
         fetch("/login", {
           method: "POST",
@@ -31,18 +32,15 @@ function Login({onLogin, onSignup}) {
             r.json().then((err)=> setErrors(err.errors))
           }
         });
+        navigate("/", { replace: true })
       }
-    function handleSignupClick() {
-      onSignup(true)
-      return(<Signup></Signup>);
-    }
 
     return(
         <div className = "Login">
             <header style={{display: "flex", flexDirection: "column", padding: "100px 500px"}}> 
                 <section><img src={logo} style={{height: "50px", width: "50px"}} alt=""></img>Instaclone</section>
                 <form 
-                onSubmit={handleSubmit}
+                onSubmit={HandleSubmit}
                 style={{display: "flex", flexDirection: "column", margin: "50px 50px"}}>
             
                 {/* fetch error handlers for login and signup */}
@@ -68,7 +66,9 @@ function Login({onLogin, onSignup}) {
                 </input>
                     <button type='submit'>login</button>
                 </form>
-                <button onClick={handleSignupClick}><Link to="/signup">Don't have an account?</Link></button>
+                <div >
+                <button onClick={()=>onSignup(true)}>Don't have an account?</button>
+                </div>
             </header>
         </div>
     );

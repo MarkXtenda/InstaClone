@@ -9,6 +9,11 @@ class FollowController < ApplicationController
         render json: feed_posts.to_json(only: [:id, :image, :caption, :likes], include: [user: { only: [:username, :avatar]}])
     end
     
+    def index
+        is_following_exist = Follow.where(follow_params).any?
+        render json: is_following_exist
+    end
+
     def create  #{ Following method }
         user = User.find(params[:follower_id])
         is_following_exist = Follow.where(follower_id: params[:follower_id], followed_user_id: params[:followed_user_id]).any?
@@ -37,15 +42,12 @@ class FollowController < ApplicationController
     end
 
     def destroy #{ Unfollowing method }
-        # followship = Follow.where(follower_id: params[:follower_id], followed_user_id: params[:followed_user_id])[0]
-        followship = Follow.find(params[:id])
+        followship = Follow.where(follower_id: params[:follower_id], followed_user_id: params[:id])[0]
         if followship
             followship.destroy
-            # user = User.find(followed_user_id)
-            # render json: user.followings
             head :no_content
         else
-            render json: { error: "Not authorized or not allowed to unfollow twice" }, status: :unauthorized
+            render json: { error: "Not allowed to unfollow twice" }, status: :not_found
         end
     end
 
