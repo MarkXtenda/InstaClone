@@ -18,16 +18,18 @@ function Feed({user}) {
     if(feed) {
         return(
             <div className = "feed">
-                <h1>feed</h1>
+                <h1>Your Feed:</h1>
                 {feed.map((post)=>
-                <div key={post.id}>
-                    <div>
-                        <img src={post.user.avatar ? post.user.avatar : logo} style={{height: "50px", width: "50px"}}></img>
-                        <p>@{post.user.username}</p>
+                <div className='feed-content' key={post.id}>
+                    <div className='user-feed-box'>
+                        <img className='user-feed-avatar' src={post.user.avatar ? post.user.avatar : logo} style={{height: "50px", width: "50px"}}></img>
+                        <p className='user-feed-username' >@{post.user.username}</p>
                     </div>
-                    <img key={post.id} src={post.image ? post.image : logo} alt="" style={{height: "500px", width: "500px"}}></img>
-                    <p>likes {post.likes}</p>
-                    <p>{post.caption}</p>
+                    <img className='post-feed-image' key={post.id} src={post.image ? post.image : logo} alt="" style={{height: "500px", width: "500px"}}></img>
+                    <div className='post-feed-caption'>
+                        <p>{post.caption}</p>
+                        <p>likes {post.likes}</p>
+                    </div>
                 </div>
                 )}
             </div>

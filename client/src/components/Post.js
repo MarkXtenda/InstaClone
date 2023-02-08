@@ -14,10 +14,17 @@ function Post() {
 
   if(post) {
     return (
-      <div  className="Post">
-          <img key={post.id} src={post.image} alt=""></img>
-          <section className='caption'>{post.caption}</section>
-          <section>{post.likes ? post.likes : 0} likes<button>like</button></section>
+      <div className = "feed">
+      <div  className='feed-content'>
+        <div className='user-feed-box'>
+
+        </div>
+          <img className='post-feed-image' key={post.id} src={post.image} alt=""></img>
+          <div className='post-feed-caption'>
+            <p>{post.caption}</p>
+            <p>{post.likes ? post.likes : 0} likes<button>like</button></p>
+          </div>
+      </div>
       </div>
     );
   }

@@ -36,12 +36,10 @@ function Login({onLogin, onSignup}) {
       }
 
     return(
-        <div className = "Login">
-            <header style={{display: "flex", flexDirection: "column", padding: "100px 500px"}}> 
-                <section><img src={logo} style={{height: "50px", width: "50px"}} alt=""></img>Instaclone</section>
-                <form 
-                onSubmit={HandleSubmit}
-                style={{display: "flex", flexDirection: "column", margin: "50px 50px"}}>
+        <div className = "login-signup-box">
+            <header className='login-signup-header'> 
+                <section><img src={logo} alt=""></img>Instaclone</section>
+                <form onSubmit={HandleSubmit}>
             
                 {/* fetch error handlers for login and signup */}
                 {errors ?

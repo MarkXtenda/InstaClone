@@ -15,9 +15,9 @@ function FollowersFollowings({userId, keyWord}) {
 
     if(follows) {
         return(
-            <div>
+            <div className='followship'>
                 {follows 
-                ? follows.map(({id, username, avatar})=><div key={id}><p>@{username}</p><img src={avatar ? avatar : logo} alt="" style={{height: "100px", width: "100px"}}></img></div>) 
+                ? follows.map(({id, username, avatar})=><div className='follow' key={id}><p>@{username}</p><img src={avatar ? avatar : logo} alt=""></img></div>) 
                 : <p>You have no {keyWord} </p>}
             </div>
         );

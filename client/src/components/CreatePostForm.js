@@ -5,7 +5,7 @@ function CreatePostForm({user}) {
 
     const [image, setImage] = useState("")
     const [caption, setCaption] = useState("")
-    const [errors, setErrors] = useState([])
+    const [errors, setErrors] = useState(null)
 
     const refreshPage = ()=>{
         window.location.reload();
@@ -39,32 +39,31 @@ function CreatePostForm({user}) {
       }
 
     return(
-        <form
-                onSubmit={handleSave}
-                style={{display: "flex", flexDirection: "column", margin: "50px 50px"}}>
+        <form className="create-update-form"
+          onSubmit={handleSave}
+          style={{display: "flex", flexDirection: "column", margin: "50px 50px"}}>
 
-                {errors ?
-                <p>{errors}</p> :
-                <p></p>}
-                <h4>New Post</h4>
-                <label htmlFor="image">Post image:</label>
-                <input
-                type="text"
-                id="image"
-                value={image}
-                onChange={(e) => setImage(e.target.value)}>
-                </input>
+          {errors ?
+          <p className="error-box">{errors}</p> :
+          <p></p>}
+          <h4>New Post</h4>
+          <label htmlFor="image">Post image:</label>
+          <input
+          type="text"
+          id="image"
+          value={image}
+          onChange={(e) => setImage(e.target.value)}>
+          </input>
 
-                <label htmlFor="caption">Post caption:</label>
-                <input
-                type="text"
-                id="caption"
-                value={caption}
-                onChange={(e) => setCaption(e.target.value)}>
-                </input>
-                    <button type='submit'>save</button>
-                </form>
-
+          <label htmlFor="caption">Post caption:</label>
+          <input
+          type="text"
+          id="caption"
+          value={caption}
+          onChange={(e) => setCaption(e.target.value)}>
+          </input>
+              <button className="create-update-button" type='submit'>save</button>
+          </form>
     );
 }
 

@@ -35,12 +35,10 @@ function Signup({onSignup}) {
       }
 
     return(
-        <div className = "Signup">
-            <header style={{display: "flex", flexDirection: "column", padding: "100px 500px"}}> 
-                <section><img src={logo} style={{height: "50px", width: "50px"}} alt=""></img>Instaclone</section>
-                <form 
-                onSubmit={handleSubmit}
-                style={{display: "flex", flexDirection: "column", margin: "50px 50px"}}>
+        <div className = "login-signup-box">
+            <header className='login-signup-header'> 
+                <section><img src={logo} alt=""></img>Instaclone</section>
+                <form onSubmit={handleSubmit}>
 
                 {/* fetch error handlers for login and signup */}
                 {errors.length > 0 ?
@@ -72,8 +70,8 @@ function Signup({onSignup}) {
                 onChange={(e) => setPasswordConfirmation(e.target.value)}>
                 </input>
                     <button type='submit'>Signup</button>
-                    <button onClick={()=>onSignup(false)}><Link to="/login">I have an account!</Link></button>
                 </form>
+                <div><button onClick={()=>onSignup(false)}>I have an account!</button></div>
             </header>
         </div>
     );

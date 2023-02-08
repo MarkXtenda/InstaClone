@@ -80,7 +80,7 @@ function UserPage({logedInUser, userId, searched}) {
 
   if(user) {
     return (
-      <div  className="home-page">
+      <div  className="user-page">
           <section className="user-section">
             <div>
                 <img src={user.avatar ? user.avatar : logo} style={{height: "100px", width: "100px"}} alt=""></img>
@@ -93,10 +93,10 @@ function UserPage({logedInUser, userId, searched}) {
                     </ul>
                 </div>
             </section>
-            <section className="post-section">
+            <section className="post-update-create-section">
                     <div>
                       {user.posts && user.posts.map(({id,image})=> 
-                      <Link to={"/posts/"+id} key={id} id={id}><img src={image} alt='' style={{height: "200px", width: "200px"}}></img></Link>)}
+                      <Link to={"/posts/"+id} key={id} id={id}><img className='post' src={image} alt=''></img></Link>)}
                     </div>       
             </section>
       </div>

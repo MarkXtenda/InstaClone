@@ -11,32 +11,32 @@ function HomePage({user}) {
     // const [chosenPost, setChosenPost] = useState(0)
 
     return(
-        <div className = "home-page">
+        <div className = "user-page">
             <section className="user-section">
             <div>
-                <img src={user.avatar ? user.avatar : logo} style={{height: "100px", width: "100px"}} alt=""></img>
+                <img src={user.avatar ? user.avatar : logo} alt=""></img>
             </div>    
-                <div>
-                    <ul>
-                        <li>{user.username}</li>
-                        <h4>
-                            {user.posts ? user.posts.length : 0} posts, 
-                            <Link to={user.id+"/followers"}>{user.followers ? user.followers.length : 0} followers</Link>, 
-                            <Link to={user.id+"/followings"}>{user.followings ? user.followings.length : 0} following</Link>
-                        </h4>
-                        <li>{user.bio}</li>
-                    </ul>
-                </div>
+            <div>
+                <ul>
+                    <li>{user.username}</li>
+                    <h4>
+                        {user.posts ? user.posts.length : 0} posts, 
+                        <Link to={user.id+"/followers"}>{user.followers ? user.followers.length : 0} followers</Link>, 
+                        <Link to={user.id+"/followings"}>{user.followings ? user.followings.length : 0} following</Link>
+                    </h4>
+                    <li>{user.bio}</li>
+                </ul>
+            </div>
             </section>
-            <section>
-                <button onClick={()=>setToggle("Home")}><img src="https://www.freeiconspng.com/thumbs/camera-icon/camera-icon-21.png" style={{height: "100px", width: "100px"}} alt=""></img></button>
-                <button onClick={()=>setToggle("UpdateProfile")}><img src="https://cdn-icons-png.flaticon.com/512/266/266146.png" style={{height: "100px", width: "100px"}} alt=""></img></button>
-                <button onClick={()=>setToggle("CreatePost")}><img src="https://cdn-icons-png.flaticon.com/512/32/32339.png" style={{height: "100px", width: "100px"}} alt=""></img></button>
+            <section className='user-options'>
+                <button onClick={()=>setToggle("Home")}><img className='option-images' src="https://www.freeiconspng.com/thumbs/camera-icon/camera-icon-21.png" alt=""></img></button>
+                <button onClick={()=>setToggle("UpdateProfile")}><img className='option-images' src="https://cdn-icons-png.flaticon.com/512/266/266146.png" alt=""></img></button>
+                <button onClick={()=>setToggle("CreatePost")}><img className='option-images' src="https://cdn-icons-png.flaticon.com/512/32/32339.png" alt=""></img></button>
             </section>
-            <section className="post-section">
+            <section className="post-update-create-section">
                 {
                 ({ 
-                    Home: <div>{ user.posts && user.posts.map(({id,image})=> <Link to={"/posts/"+id} key={id} id={id}><img src={image} alt='' style={{height: "200px", width: "200px"}}></img></Link>)}</div>,
+                    Home: <div>{ user.posts && user.posts.map(({id,image})=> <Link to={"/posts/"+id} key={id} id={id}><img className='post' src={image} alt=''></img></Link>)}</div>,
                     UpdateProfile: <UpdateProfile user={user}></UpdateProfile>,
                     CreatePost: <CreatePostForm user={user}></CreatePostForm>
                 })[togle]

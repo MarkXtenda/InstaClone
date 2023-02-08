@@ -40,13 +40,13 @@ function NavBar({user, onLogin, onSearch}) {
       }
   
     return (
-    <header className="user-section"> 
-        <a href="/feed"><img src={logo} style={{height: "50px", width: "50px"}} alt=""></img></a>
+    <header className="navbar-header"> 
+        <a id='feed-link' href="/feed"><img src={logo} alt=""></img></a>
         <form onSubmit={handleSearch}>
         <input id="username" value={username} onChange={(e) => setUsername(e.target.value)}></input>
         </form>
-        <a href="/"><h3>@{user.username}</h3></a>
-        <button onClick={handleLogout}>logout</button> 
+        <a id='user-link' href="/"><h3>@{user.username}</h3></a>
+        <button type="button" onClick={handleLogout}>logout</button> 
     </header>
 
     );
