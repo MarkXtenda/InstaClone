@@ -29,9 +29,9 @@ function HomePage({user}) {
             </div>
             </section>
             <section className='user-options'>
-                <button onClick={()=>setToggle("Home")}><img className='option-images' src="https://www.freeiconspng.com/thumbs/camera-icon/camera-icon-21.png" alt=""></img></button>
-                <button onClick={()=>setToggle("UpdateProfile")}><img className='option-images' src="https://cdn-icons-png.flaticon.com/512/266/266146.png" alt=""></img></button>
-                <button onClick={()=>setToggle("CreatePost")}><img className='option-images' src="https://cdn-icons-png.flaticon.com/512/32/32339.png" alt=""></img></button>
+                <button onClick={()=>setToggle("Home")}><p className='icons'>📷</p></button>
+                <button onClick={()=>setToggle("UpdateProfile")}><p className='icons'>✍️</p></button>
+                <button onClick={()=>setToggle("CreatePost")}><p className='icons'>➕</p></button>
             </section>
             <section className="post-update-create-section">
                 {

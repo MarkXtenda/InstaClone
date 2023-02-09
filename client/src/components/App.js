@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import HomePage from './HomePage'
 import Feed from './Feed'
@@ -11,6 +10,8 @@ import NavBar from './NavBar';
 import SearchUser from './SearchUser'
 import UserPage from './UserPage'
 import FollowersFollowings from './FollowersFollowings';
+import PageNotFound from './static/PageNotFound'
+import Loading from './static/Loading';
 
 function App() {
   const followers = "followers"
@@ -18,13 +19,16 @@ function App() {
   const [user, setUser] = useState(false) /* log in method */
   const [search, setSearch] = useState([])
   const [signup, setSignup] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
+    setIsLoading(true)
     // auto-login
     fetch("/me").then((r) => {
       if (r.ok) {
         r.json().then((user) => {
           setUser(user)});
+          setIsLoading(false)
       }
     });
   }, []);
@@ -45,6 +49,7 @@ function App() {
         <Route  path="/users/:id" element={<UserPage logedInUser={user} userId={user.id} searched = {search} />}></Route>
         <Route path="/:id/followers" element={<FollowersFollowings userId={user.id} keyword={followers} />}></Route>
         <Route path="/:id/followings" element={<FollowersFollowings userId={user.id} keyword={followings}/>}></Route>
+        <Route path='*' element={<PageNotFound/>}></Route>
       </Routes>
     </div>
   );

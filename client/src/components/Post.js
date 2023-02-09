@@ -15,6 +15,7 @@ function Post() {
   if(post) {
     return (
       <div className = "feed">
+        <h1></h1>
       <div  className='feed-content'>
         <div className='user-feed-box'>
 

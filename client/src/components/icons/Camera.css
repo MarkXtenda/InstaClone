@@ -1,0 +1,39 @@
+.camera-icon {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .lens {
+    width: 10px;
+    height: 10px;
+    border-radius: 50% 50% 0 50%;
+    border: 2px solid #000;
+    border-bottom: none;
+    background-color: #fff;
+    transform: rotate(45deg);
+    position: relative;
+    top: -5px;
+  }
+  
+  .body {
+    width: 15px;
+    height: 20px;
+    border: 2px solid #000;
+    border-radius: 3px;
+    background-color: #fff;
+    position: relative;
+    left: -7px;
+  }
+  
+  .shutter {
+    width: 3px;
+    height: 5px;
+    border: 2px solid #000;
+    background-color: #000;
+    position: relative;
+    left: 6px;
+    top: 5px;
+  }

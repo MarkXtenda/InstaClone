@@ -6,7 +6,7 @@ class FollowController < ApplicationController
         followed_users = []
         follows.each{|index| followed_users.push(index.id)}
         feed_posts = Post.where(user_id: followed_users).order(id: :desc)
-        render json: feed_posts.to_json(only: [:id, :image, :caption, :likes], include: [user: { only: [:username, :avatar]}])
+        render json: feed_posts.to_json(only: [:id, :image, :caption, :likes], include: [user: { only: [:id, :username, :avatar]}])
     end
     
     def index

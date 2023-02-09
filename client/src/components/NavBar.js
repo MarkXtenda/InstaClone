@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import logo from './logo.svg'
+import logo from './logo.png'
 
 function NavBar({user, onLogin, onSearch}) {
 

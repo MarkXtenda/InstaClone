@@ -1,24 +1,23 @@
 import logo from './logo.svg';
 import { useEffect, useState } from "react";
+import { Link } from 'react-router-dom';
 
-function FollowersFollowings({userId, keyWord}) {
+function FollowersFollowings({userId, keyword}) {
 
     const[follows, setFollows] = useState([])
-    console.log(keyWord)
 
     useEffect(()=>{
-        fetch(`/users/${userId}/followings`).then((r) => {
+        fetch(`/users/${userId}/${keyword}`).then((r) => {
           if (r.ok) r.json().then((res) => {
-            console.log(res)
             setFollows(res)});
-        })},[keyWord])
+        })},[keyword])
 
     if(follows) {
         return(
             <div className='followship'>
-                {follows 
-                ? follows.map(({id, username, avatar})=><div className='follow' key={id}><p>@{username}</p><img src={avatar ? avatar : logo} alt=""></img></div>) 
-                : <p>You have no {keyWord} </p>}
+                {follows.length > 0
+                ? follows.map(({id, username, avatar})=><Link to={"/users/"+id} key={id}><div className='follow'><p>@{username}</p><img src={avatar ? avatar : logo} alt=""></img></div></Link>) 
+                : <h1>You have no {keyword} </h1>}
             </div>
         );
     }
