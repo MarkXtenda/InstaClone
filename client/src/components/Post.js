@@ -23,7 +23,7 @@ function Post() {
           <img className='post-feed-image' key={post.id} src={post.image} alt=""></img>
           <div className='post-feed-caption'>
             <p>{post.caption}</p>
-            <p>{post.likes ? post.likes : 0} likes<button>like</button></p>
+            <p>{post.likes} likes <button>like</button></p>
           </div>
       </div>
       </div>

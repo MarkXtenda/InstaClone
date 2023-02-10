@@ -30,11 +30,16 @@ function App() {
           setUser(user)});
           setIsLoading(false)
       }
+      else {
+        setIsLoading(false)
+      }
     });
   }, []);
   
   // if (!user) return(signup ? (<Signup onSignup={setSignup}/>) : (<Login onLogin={setUser} onSignup={setSignup}/>));
-  if (!user) return(!signup ? <Login onLogin={setUser} onSignup={setSignup}/> : <Signup onSignup={setSignup}/>);
+  if (!user && !isLoading) return(!signup ? <Login onLogin={setUser} onSignup={setSignup}/> : <Signup onSignup={setSignup}/>);
+
+  if (isLoading) return(<Loading/>);
 
   return (
     <div className="App">

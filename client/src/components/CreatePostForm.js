@@ -21,6 +21,7 @@ function CreatePostForm({user}) {
           body: JSON.stringify({
             image,
             caption,
+            "likes": 0
           }),
         })
         .then((r) => {

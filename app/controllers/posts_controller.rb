@@ -20,6 +20,6 @@ class PostsController < ApplicationController
     private
 
     def posts_params
-        params.permit(:image, :caption)
+        params.permit(:likes, :image, :caption)
     end
 end
