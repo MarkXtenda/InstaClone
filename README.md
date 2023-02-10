@@ -1,25 +1,30 @@
-# README
+# Welcome to InstaClone
+This is a clone of the popular social media platform Instagram. The application allows you to sign in or log in using your credentials, choose your profile picture and bio, and add posts with photos and captions. You can search for other users on the website, check their pages, follow them, and receive followers. Your feed consists of posts from users you follow.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Features
+* Sign in or log in with your credentials
+* Choose your profile picture and bio
+* Add posts with photos and captions
+* Search for other users
+* Check other user's pages
+* Follow users and receive followers
+* Unfollow users
+* Check your feed consisting of posts from users you follow
 
-Things you may want to cover:
+## Requirements
+To run this application, you will need a web browser and internet connection.
 
-* Ruby version
+## Usage
+1. Open the website
+2. Sign in or log in with your credentials
+3. Choose your profile picture and bio
+4. Start adding posts with photos and captions
+5. Search for other users and check their pages
+6. Follow users and receive followers
+7. Check your feed to see posts from users you follow
 
-* System dependencies
+## Contributing
+If you're interested in contributing to this project, please reach out to the repository owner for more information.
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-# instagram-clone
+## Creators
+This project is licensed under the [insert license name here].
