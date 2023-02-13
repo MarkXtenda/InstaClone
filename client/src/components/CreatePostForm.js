@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 
-function CreatePostForm({user}) {
+function CreatePostForm() {
 
     const [image, setImage] = useState("")
     const [caption, setCaption] = useState("")
@@ -63,7 +63,7 @@ function CreatePostForm({user}) {
           value={caption}
           onChange={(e) => setCaption(e.target.value)}>
           </input>
-              <button className="create-update-button" type='submit'>save</button>
+              <button className="click-button" type='submit'>save</button>
           </form>
     );
 }

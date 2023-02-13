@@ -1,12 +1,12 @@
 class FollowController < ApplicationController
     
     def show    #{ Feed method}
-        user = User.find(params[:id]) #{ NOTE: add session[:user_id], instead of params[:id]}
+        user = User.find(session[:user_id]) #{ NOTE: add session[:user_id], instead of params[:id]}
         follows = user.followings
         followed_users = []
         follows.each{|index| followed_users.push(index.id)}
         feed_posts = Post.where(user_id: followed_users).order(id: :desc)
-        render json: feed_posts.to_json(only: [:id, :image, :caption, :likes], include: [user: { only: [:id, :username, :avatar]}])
+        render json: feed_posts.to_json(only: [:id, :image, :caption, :liked], include: [user: { only: [:id, :username, :avatar]}, users_likes: { only: :id}])
     end
     
     def index

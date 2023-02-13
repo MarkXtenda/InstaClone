@@ -29,7 +29,7 @@ function Feed({user}) {
                     <img className='post-feed-image' key={post.id} src={post.image ? post.image : logo} alt="" style={{height: "500px", width: "500px"}}></img>
                     <div className='post-feed-caption'>
                         <p>{post.caption}</p>
-                        <p>{post.likes} likes <button>like</button></p>
+                        <p>{post.users_likes.length} likes</p>
                     </div>
                 </div>
                 )}

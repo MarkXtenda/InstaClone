@@ -1,6 +1,5 @@
 import logo from './logo.svg';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 
 function Signup({onSignup}) {
     const [username, setUsername] = useState("");

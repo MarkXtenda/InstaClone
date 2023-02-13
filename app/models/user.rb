@@ -3,6 +3,7 @@ class User < ApplicationRecord
     # validates password and password confirmation using bcrypt
 
     has_many :posts
+
     has_secure_password #{ Password Protection, using 'bcrypt' gem }
     
     # Will return an array of follows for the given user instance
@@ -16,4 +17,7 @@ class User < ApplicationRecord
   
     # returns an array of other users who the user has followed
     has_many :followings, through: :given_follows, source: :followed_user
+
+    # returns an array of users likes
+    has_many :liked_posts, foreign_key: :user_id, class_name: "Like"
 end

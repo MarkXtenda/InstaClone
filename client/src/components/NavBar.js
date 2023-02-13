@@ -4,8 +4,6 @@ import logo from './logo.png'
 function NavBar({user, onLogin, onSearch}) {
 
   const [username, setUsername] = useState("")
-  const [errors, setErrors] = useState([])
-  const [findUsers, setFindUsers] = useState([])
 
     function handleLogout() {
         fetch("/logout", { method: "DELETE" }).then((r) => {
@@ -28,13 +26,12 @@ function NavBar({user, onLogin, onSearch}) {
       })
         .then((r) => {
           if(r.ok) {
-            setErrors([])
             r.json().then((users) => {
               onSearch(users)
             })
           }
           else {
-            r.json().then((err)=>setErrors(err))
+            r.json().then((err)=>console.log(err))
           }
         });
       }

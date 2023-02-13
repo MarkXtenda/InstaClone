@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :posts
   resources :users
   resources :follow
+  resources :like, only: [:index, :create, :destroy]
   post '/signup', to: 'users#create'
   post '/login', to: 'session#create'
   delete "/logout", to: "session#destroy"

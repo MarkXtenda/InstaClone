@@ -16,7 +16,9 @@ function UserPage({logedInUser, userId, searched}) {
   
   useEffect(()=>{
     Promise.all([
+      // Get User
       fetch(`/users/${path}`).then(res => res.json()),
+      // Get User Followers
       fetch(`/follow?followed_user_id=${followed_user_id}&follower_id=${follower_id}`, {method: "GET",}).then(res => res.json())])
       .then(([userData, followData]) => {
         setUser(userData)
@@ -87,7 +89,7 @@ function UserPage({logedInUser, userId, searched}) {
             </div>    
                 <div>
                     <ul>
-                      <li><button onClick={handleFollow}>{!followed ? 'follow' : 'unfollow'}</button></li>
+                      <li><button className='click-button' onClick={handleFollow}>{!followed ? 'follow' : 'unfollow'}</button></li>
                       <h4>{user.posts ? user.posts.length : 0} posts, {user.followers ? user.followers.length : 0} followers, {user.followings ? user.followings.length : 0} following</h4>
                       <li>{user.bio}</li>
                     </ul>

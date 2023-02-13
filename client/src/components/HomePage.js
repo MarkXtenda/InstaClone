@@ -4,7 +4,6 @@ import { useState } from 'react';
 import CreatePostForm from './CreatePostForm';
 import UpdateProfile from './UpdateProfile';
 import { Link } from 'react-router-dom';
-import FollowersFollowings from './FollowersFollowings';
 
 function HomePage({user}) {
     const [togle, setToggle] = useState("Home")

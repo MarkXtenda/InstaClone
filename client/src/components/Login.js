@@ -1,7 +1,6 @@
 import logo from './logo.svg';
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import Signup from './Signup';
+import { useNavigate } from 'react-router-dom';
 
 function Login({onLogin, onSignup}) {
     const [username, setUsername] = useState("");

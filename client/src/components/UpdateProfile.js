@@ -62,7 +62,7 @@ function UpdateProfile({user}) {
           value={bio}
           onChange={(e) => setBio(e.target.value)}>
           </input>
-              <button className="create-update-button" type='submit'>save</button>
+              <button className="click-button" type='submit'>save</button>
           </form>
 
     );

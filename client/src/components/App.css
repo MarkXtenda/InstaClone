@@ -370,8 +370,9 @@ input[type="text"] {
   border: 1px solid #ccc;
 }
 
-.create-update-button {
+.click-button {
   margin-top: 20px;
+  margin-bottom: 20px;
   padding: 10px 20px;
   background-color: #3897f0;
   color: #fff;
@@ -381,7 +382,7 @@ input[type="text"] {
   cursor: pointer;
 }
 
-.create-update-button:hover {
+.click-button:hover {
   background-color: #2f80ed;
 }
 /* CREATEPOST Component */
@@ -414,3 +415,13 @@ input[type="text"] {
   }
 }
 /* LOADING Component */
+/* LIKEBUTTON Component */
+.like-div {
+  display: flex;
+  align-items: center;
+}
+
+.like-div p {
+  padding-right: 20px;
+}
+/* LIKEBUTTON Component */

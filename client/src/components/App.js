@@ -50,7 +50,7 @@ function App() {
         <Route path="/" element={<HomePage user={user} onLogin={setUser}/>}></Route>
         <Route path="/signup" element={<Signup />}></Route>
         <Route path="/login" element={<Login />}></Route>
-        <Route  path="/posts/:id" element={<Post />}></Route>
+        <Route  path="/posts/:id" element={<Post userId = {user.id}/>}></Route>
         <Route  path="/users/:id" element={<UserPage logedInUser={user} userId={user.id} searched = {search} />}></Route>
         <Route path="/:id/followers" element={<FollowersFollowings userId={user.id} keyword={followers} />}></Route>
         <Route path="/:id/followings" element={<FollowersFollowings userId={user.id} keyword={followings}/>}></Route>
