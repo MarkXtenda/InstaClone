@@ -13,30 +13,35 @@ function CreatePostForm() {
 
     function handleSave(e) {
         e.preventDefault();
-        fetch(`/posts`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            image,
-            caption,
-            "likes": 0
-          }),
-        })
-        .then((r) => {
-          if(r.ok) {
-            setErrors([])
-            r.json().then((user) => {
-              // console.log(`Post image: ${user.posts.last.image}`)
-              // console.log(`Post caption: ${user.posts.last.caption}`)
-              refreshPage()
-            })
-          }
-          else {
-            r.json().then((err)=> setErrors(err.errors))
-          }
-        });
+        if (image.length > 0) {
+          fetch(`/posts`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              image,
+              caption,
+              "likes": 0
+            }),
+          })
+          .then((r) => {
+            if(r.ok) {
+              setErrors([])
+              r.json().then((user) => {
+                // console.log(`Post image: ${user.posts.last.image}`)
+                // console.log(`Post caption: ${user.posts.last.caption}`)
+                refreshPage()
+              })
+            }
+            else {
+              r.json().then((err)=> setErrors(err.errors))
+            }
+          });
+        }
+        else {
+          setErrors(["post should have at least an image"])
+        }
       }
 
     return(
