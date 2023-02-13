@@ -1,5 +1,5 @@
 # Welcome to InstaClone
-This is a clone of the popular social media platform Instagram. The application allows you to sign in or log in using your credentials, choose your profile picture and bio, and add posts with photos and captions. You can search for other users on the website, check their pages, follow them, and receive followers. Your feed consists of posts from users you follow.
+This is a clone of the popular social media platform Instagram. The application allows you to sign in or log in using your credentials, choose your profile picture and bio, and add posts with photos and captions. You can search for other users on the website, check their pages, like their posts, follow them, and receive followers. You can also scroll your feed. Your feed consists of posts from users you follow.
 
 ## Features
 * Sign in or log in with your credentials
@@ -7,6 +7,7 @@ This is a clone of the popular social media platform Instagram. The application 
 * Add posts with photos and captions
 * Search for other users
 * Check other user's pages
+* Like other users posts
 * Follow users and receive followers
 * Unfollow users
 * Check your feed consisting of posts from users you follow
