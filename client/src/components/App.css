@@ -17,6 +17,12 @@
   text-align: center;
 }
 
+.login-signup-header section {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
 .login-signup-header img {
   width: 100px;
   margin-bottom: 30px;

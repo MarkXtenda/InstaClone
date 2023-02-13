@@ -36,7 +36,7 @@ function Signup({onSignup}) {
     return(
         <div className = "login-signup-box">
             <header className='login-signup-header'> 
-                <section><img src={logo} alt=""></img>Instaclone</section>
+                <section><img src={logo} alt=""></img><h3>Instaclone</h3></section>
                 <form onSubmit={handleSubmit}>
 
                 {/* fetch error handlers for login and signup */}
