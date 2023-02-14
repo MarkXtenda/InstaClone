@@ -26,6 +26,3 @@ To run this application, you will need a web browser and internet connection.
 
 ## Contributing
 If you're interested in contributing to this project, please reach out to the repository owner for more information.
-
-## Creators
-This project is licensed under the [insert license name here].
