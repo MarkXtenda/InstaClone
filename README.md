@@ -12,8 +12,12 @@ This is a clone of the popular social media platform Instagram. The application 
 * Unfollow users
 * Check your feed consisting of posts from users you follow
 
-## Requirements
+## Install instruction
 To run this application, you will need a web browser and internet connection.
+1. Copy the repository
+2. In the terminal go to folder `instagram-clone`
+3. Type `rails s`
+4. Type `cd/client`, type `npm install` and `npm start`
 
 ## Usage
 1. Open the website
