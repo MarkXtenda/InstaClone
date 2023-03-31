@@ -13,3 +13,16 @@
     justify-content: space-around;
     list-style-type: none
 }
+
+.option-button {
+  border: 2px solid blue;
+}
+
+.active-button {
+  border: 2px solid red;
+}
+
+.post:hover {
+  opacity: 50%;
+  border: 2px solid red;
+}

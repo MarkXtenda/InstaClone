@@ -28,14 +28,14 @@ function HomePage({user}) {
             </div>
             </section>
             <section className='user-options'>
-                <button onClick={()=>setToggle("Home")}><p className='icons'>📷</p></button>
-                <button onClick={()=>setToggle("UpdateProfile")}><p className='icons'>✍️</p></button>
-                <button onClick={()=>setToggle("CreatePost")}><p className='icons'>➕</p></button>
+                <button className={togle === "Home" ? 'active-button' : 'option-button'} onClick={()=>setToggle("Home")}><p className='icons'>📷</p></button>
+                <button className={togle === "UpdateProfile" ? 'active-button' : 'option-button'} onClick={()=>setToggle("UpdateProfile")}><p className='icons'>✍️</p></button>
+                <button className={togle === "CreatePost" ? 'active-button' : 'option-button'} onClick={()=>setToggle("CreatePost")}><p className='icons'>➕</p></button>
             </section>
             <section className="post-update-create-section">
                 {
                 ({ 
-                    Home: <div>{ user.posts && user.posts.map(({id,image})=> <Link to={"/posts/"+id} key={id} id={id}><img className='post' src={image} alt=''></img></Link>)}</div>,
+                    Home: <div>{ user.posts && user.posts.map(({id,image})=> <Link className='post' to={"/posts/"+id} key={id} id={id}><img className='post' src={image} alt=''></img></Link>)}</div>,
                     UpdateProfile: <UpdateProfile user={user}></UpdateProfile>,
                     CreatePost: <CreatePostForm user={user}></CreatePostForm>
                 })[togle]
